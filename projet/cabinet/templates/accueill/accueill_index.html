@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+ 
+<!-- {{ current_nom }}
+{{ current_prenom }}
+{{ current_role }} -->
+
+<br><br>
+<div class="container">
+    <div class="row">
+                <div class="col">
+                    <!-- #7AECB5 -->
+                    <img src="{% static 'image/accueil.png' %}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col" style="margin-top:100px;" >
+                    <br><br>
+                    <h3 class="text-center"><i>L'art de la médecine consiste à distraire le malade pendant que la nature le guérit</i></h3>
+                    <br><br>
+                    <h6 class="card-text text-center">Respirer, expirer, détendez-vous, libérez-vous de tout et prenez rendez-vous pour une séance de thérapie !</h6>
+                    <!-- <br><br>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn" href="{% url 'rendez-create' %}" style="color:#7AECB5 ;"> N'attendez plus prenez rendez-vous maintenant </a>
+                    </div> -->
+                </div>
+    </div>
+</div>
+
+<br><br><br>
+<h2 class="text-center mb-1"><i></i>Liste des rendez-vous de la semaine </i></h2>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4" >
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+            <th>Date</th>
+            <th>Patient</th>
+            <th>Maladie</th>
+            <!-- <th>Action</th> -->
+          </tr>
+          </thead>
+          <tbody>
+            {% for rendez in rendezsj %}
+              <tr>
+                <td>{{rendez.date}}</td>
+                <td>{{rendez.patient.nom}}</td>
+                <td>{{rendez.maladie}}</td>
+                <!-- <td>
+                  <a href="{% url 'rendez-detail' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                  <a href="{% url 'rendez-update' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                  <a href="{% url 'rendez-delete' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                </td> -->
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+  </div>
+</div>
+
+<br><br><br>
+<div class="container" style="max-width: 1100px;">
+    <div class="row">
+    <div class="row row-cols-3 row-cols-md-4">
+        <div class="col-md-4">
+        <div class="card mb-3" style="border: 3px solid #7AECB5;">
+            <div class="card-body">
+            <i class="d-flex justify-content-center fa-solid fa-comment-medical fa-2x" style="color:#7AECB5 ;"></i>
+            <br>
+            <h5 class="card-title text-center">  Contact</h5>
+            <br>
+            <p class="card-text">Adresse : Rue Sbou Agdal Rabat Maroc </p>
+            <p class="card-text">Numéro de téléphone : +212 624561548</p>
+            <p class="card-text">Email : CabinetMedical@gmail.com</p>
+            <br>
+            <div class="d-flex justify-content-center">
+            <a class="text-decoration-none" href="{% url 'contact-index' %}" style="color:#7AECB5 ;"> Contactez-nous</a>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="card mb-3" style="border: 3px solid #7AECB5;">
+            <div class="card-body">
+            <i class="d-flex justify-content-center fa-solid fa-calendar-check fa-2x" style="color:#7AECB5 ;"></i>
+            <br>
+            <h5 class="card-title text-center">  Rendez-vous</h5>
+            <br>
+            <p class="card-text">Cabinet du DR. Salma CHERKAOUI</p>
+            <p class="card-text">Médecin psychiatre et psychologue</p>
+            <p class="card-text">Spécialiste des troubles mentales</p>
+            <br>
+            <div class="d-flex justify-content-center">
+            <a class="text-decoration-none" href="{% url 'rendez-create' %}" style="color:#7AECB5 ;"> Prendre rendez-vous</a>
+        </div>
+    </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="card mb-3" style="border: 3px solid #7AECB5;">
+            <div class="card-body">
+            <i class="d-flex justify-content-center fa-solid fa-clock fa-2x" style="color:#7AECB5 ;"></i>
+            <br>
+            <h5 class="card-title text-center">  Horaire d'ouveture</h5>
+            <br>
+            <p class="card-text">Du lundi au vendredi : 08:30 – 18:00</p>
+            <p class="card-text">Le samedi : 09:00 – 12:00</p>
+            <p class="card-text">Le dimanche : fermée</p>
+            <br>
+            <div class="d-flex justify-content-center">
+                <a class="text-decoration-none" href="{% url 'disponibilite-index' %}" style="color:#7AECB5 ;"> Voir la disponibilité</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

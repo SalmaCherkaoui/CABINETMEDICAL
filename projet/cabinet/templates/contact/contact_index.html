@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+<h3 class="text-center mb-1">
+    <i>Cabinet du Dr. Salma CHERKAOUI <br>
+    Médecin psychiatre et psychologue spécialiste des troubles mentales</i>
+</h3>
+
+<br><br>
+<div class="container">
+    <div class="row">
+                <div class="col"style=" margin-left:170px; width: 250px ;">
+                    <!-- #7AECB5 -->
+                    <img style="width: 1000px ;" src="{% static 'image/contact.png' %}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col" style="margin-top:-10px;  margin-right:50px;" >
+                    <div style="margin-top:100px;  margin-right:50px;">
+                        <h4 class=" mb-1"><i> Pour nous contactez </i></h4>
+                    </div>
+                    <br>
+                            <div class="center">
+                                <p class="card-text"><i class="fa-solid fa-map-location-dot " style="color:#7AECB5 ;"></i>  Adresse : Rue Sbou Agdal Rabat Maroc </p>
+                                <p class="card-text"><i class="fa-solid fa-phone" style="color:#7AECB5 ;"></i>  Numéro de téléphone : +212 624561548</p>
+                                <p class="card-text"><i class="fa-solid fa-envelope" style="color:#7AECB5 ;"></i>  Email : CabinetMedical@gmail.com</p>
+                                <p class="card-text"><i class="fa-solid fa-clock" style="color:#7AECB5 ;"></i>  Horaire : Du lundi au vendredi : 08:30 – 18:00</p> 
+                                <p class="card-text" style="margin-left:85px;">Samedi : 09:00 - 12:00 et dimanche fermée</p> 
+                                <br><br>
+                                {% if current_nom != ""  %}
+                                    {% if current_role == ""  %}
+                                        <a class="btn float-end" href="{% url 'rendez-create' %}" style="color:#7AECB5 ;">Prendre rendez-vous</a>
+                                        &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+                                        <a class="btn float-end" href="{% url 'accueil-index' %}" style="color:#7AECB5 ;">Revenir à l'accueil</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a class="btn float-end" href="{% url 'login' %}" style="color:#7AECB5 ;">Prendre rendez-vous</a>
+                                    &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+                                    <a class="btn float-end" href="{% url 'accueil-index' %}" style="color:#7AECB5 ;">Revenir à l'accueil</a>
+                                {% endif %}
+                            </div>   
+                </div>
+    </div>
+</div>
+
+{% endblock %}

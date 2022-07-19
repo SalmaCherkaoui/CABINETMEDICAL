@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+  <div class="row">
+      <div class="text-center mb-1">
+        <img style="width: 250px ;" src="{% static 'image/index.png' %}" class="img-fluid rounded-start" alt="...">
+      <br><br>
+      <h1 class="text-center mb-1"><i>Liste des factures</i></h1>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4" >
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nombre rendez-vous</th>
+            <th>Prix</th>
+            <th>Prix total</th>
+            <th>Mode de paiement</th>
+            <th>Somme</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for rendez in rendezs %}
+              <tr>
+                <td>{{rendez.patient.nom}}</td>
+                <td>{{rendez.patient.prenom}}</td>
+                <td>1</td>
+                <td>{{rendez.prix}}</td>
+                <td>{{rendez.prixTotal}}</td>
+                <td>{{rendez.modePaiement}}</td>
+                <td>{{rendez.prixTotal}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <a style="color:#7AECB5;" class="btn float-end" href="{% url 'rendez-index'%}">Retourner au rendez-vous</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="text-center mb-1">
+          <img style="width: 250px;" src="{% static 'image/delete.png' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+          <h3 class="text-center mb-1"> Etes vous sur de vouloir supprimer le patient <b>~ {{ patient.nom }} ~</b> ?</h3>
+        </div>
+        <div class="text-center" >
+            <form action="" method="post">
+                {% csrf_token %}
+                <br>
+                <input class="btn" style="background-color:  #7AECB5;" type="submit" value="Supprimer">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div class="container">
+    <a style="color:#7AECB5;" class="btn " href="{% url 'patient-index' %}">Retourner à la liste des patients</a>
+</div>
+
+{% endblock %}

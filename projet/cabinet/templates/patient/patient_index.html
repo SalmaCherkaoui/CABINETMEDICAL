@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+  <div class="row">
+      <div class="text-center mb-1">
+        <img style="width: 250px ;" src="{% static 'image/index.png' %}" class="img-fluid rounded-start" alt="...">
+      <br><br>
+      <h1 class="text-center mb-1"><i>Liste des patients</i></h1>
+    </div>
+  </div>
+</div>
+
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4">
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Cin</th>
+              <th>Date de naissance</th>
+              <th>Numéro de téléphone</th>
+              <th>Sexe</th>
+              <th>Adresse</th>
+              <th>Profession</th>
+              <th>Email</th>
+              <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for patient in patients %}
+              <tr>
+                <td>{{patient.nom}}</td>
+                <td>{{patient.prenom}}</td>
+                <td>{{patient.cin}}</td>
+                <td>{{patient.dateNaissance}}</td>
+                <td>{{patient.numeroTelephone}}</td>
+                <td>{{patient.sexe}}</td>
+                <td>{{patient.adresse}}</td>
+                <td>{{patient.profession}}</td>
+                <td>{{patient.email}}</td>
+                <td>
+                  <a href="{% url 'patient-detail' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                  <a href="{% url 'patient-update' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                  <a href="{% url 'patient-delete' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <a style="color:#7AECB5;" class="btn float-end" href="{% url 'patient-create'%}">Créer un nouveau patient</a>
+      </div>
+  </div>
+</div>
+
+<!-- <ul>
+    {% for patient in patients %}
+      <li>
+          <p>{{patient.nom}}
+          <a href="{% url 'patient-detail' patient.id %}">détail</a>
+          - <a href="{% url 'patient-update' patient.id %}">modifier</a> 
+          - <a href="{% url 'patient-delete' patient.id %}">supprimer</a>
+          </p>
+      </li>
+    {% endfor %}
+    <a href="{% url 'patient-create'%}">Créer un nouveau patient</a>
+  </ul> -->
+
+{% endblock %}

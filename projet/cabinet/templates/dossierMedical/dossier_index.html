@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+  <div class="text-center mb-1">
+    <img style="width: 250px ;" src="{% static 'image/index.png' %}" class="img-fluid rounded-start" alt="...">
+    <br><br>
+  <h1 class="text-center mb-1"><i>Liste des dossiers médicaux</i></h1>
+  </div>
+</div>
+</div>
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4">
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+              <th>Date de création</th>
+              <th>Groupe sanguin</th>
+              <th>Taille</th>
+              <th>Poids</th>
+              <th>Assurance maladie</th>
+              <th>Allergies</th>
+              <th>Vaccination</th>
+              <th>Patient</th>
+              <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for dossier in dossiers %}
+              <tr>
+                <td>{{dossier.dateCreation}}</td>
+                <td>{{dossier.groupeSanguin}}</td>
+                <td>{{dossier.taille}}</td>
+                <td>{{dossier.poids}}</td>
+                <td>{{dossier.assuranceMaladie}}</td>
+                <td>{{dossier.allergies}}</td>
+                <td>{{dossier.vaccination}}</td>
+                <td>{{dossier.patient.nom}}</td>
+                <td>
+                  <a href="{% url 'dossier-detail' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                  <a href="{% url 'dossier-update' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                  <a href="{% url 'dossier-delete' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <br> 
+        <a style="color:#7AECB5;" class="btn float-end" href="{% url 'dossier-create'%}">Créer un nouveau dossier médical</a>
+      </div>
+  </div>
+</div>
+
+
+  <!-- <ul>
+    {% for dossier in dossiers %}
+      <li>
+          <p>{{dossier.patient.nom}}
+          <a href="{% url 'dossier-detail' dossier.id %}">détail</a>
+          - <a href="{% url 'dossier-update' dossier.id %}">modifier</a> 
+          - <a href="{% url 'dossier-delete' dossier.id %}">supprimer</a>
+          </p>
+      </li>
+    {% endfor %}
+    <a href="{% url 'dossier-create'%}">Créer un nouveau dossier médical</a>
+  </ul> -->
+
+{% endblock %}

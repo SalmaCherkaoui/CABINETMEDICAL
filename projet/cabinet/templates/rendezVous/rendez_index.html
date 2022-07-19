@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+  <div class="text-center mb-1">
+    <img style="width: 250px ;" src="{% static 'image/index.png' %}" class="img-fluid rounded-start" alt="...">
+    <br><br>
+  <h1 class="text-center mb-1"><i>Liste des rendez-vous</i></h1>
+  </div>
+</div>
+</div>
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4" >
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+              <th>Date</th>
+              <th>Maladie</th>
+              <th>Consultation</th>
+              <th>Ordonnance</th>
+              <th>Prix</th>
+              <th>Prix total</th>
+              <th>Mode de paiement</th>
+              <th>Patient</th>
+              <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for rendez in rendezs %}
+              <tr>
+                <td>{{rendez.date}}</td>
+                <td>{{rendez.maladie}}</td>
+                <td>{{rendez.consultation}}</td>
+                <td>{{rendez.ordonnance}}</td>
+                <td>{{rendez.prix}}</td>
+                <td>{{rendez.prixTotal}}</td>
+                <td>{{rendez.modePaiement}}</td>
+                <td>{{rendez.patient.nom}}</td>
+                <td>
+                  <a href="{% url 'rendez-detail' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                  <a href="{% url 'rendez-update' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                  <a href="{% url 'rendez-delete' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <a style="color:#7AECB5;" class="btn float-end" href="{% url 'rendez-create'%}">Créer un nouveau rendez-vous</a>
+  </div>
+</div>
+
+  <!-- <ul>
+    {% for rendez in rendezs %}
+      <li>
+          <p>{{rendez.patient.nom}}
+          <a href="{% url 'rendez-detail' rendez.id %}">détail</a>
+          - <a href="{% url 'rendez-update' rendez.id %}">modifier</a> 
+          - <a href="{% url 'rendez-delete' rendez.id %}">supprimer</a>
+          </p>
+      </li>
+    {% endfor %}
+    <a href="{% url 'rendez-create'%}">Créer un nouveau rendez-vous</a>
+  </ul> -->
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<h1 class="text-center mb-1"><i></i>Modifier les informations du rendez-vous </i></h1>
+
+<div class="container">
+    <div class="row">
+        <br>
+                <div class="col" style="margin-top:-5px; margin-left:120px;">
+                    <!-- #7AECB5 -->
+                    <img src="{% static 'image/create.png' %}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col" style="margin-top:80px;" >
+                    <div class="d-flex justify-content-center" style="margin-bottom:60px; margin-right:200px;">
+                        <div >
+                            <div class="card-body" style="margin-left:50px; margin-right:50px;">
+                                <form action="" method="post" novalidate>
+                                    <div class = "form-group row"> 
+                                    {% csrf_token %}
+                                    <table>
+                                        {{ form.as_table }}
+                                    </table>
+                                    </div>
+                                    <br>
+                                    <input class="btn" style="background-color:  #7AECB5;" type="submit" value="Modifier">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <a style="color:#7AECB5;" class="btn "href="{% url 'rendez-index' %}">Retourner à la liste des rendez-vous</a>
+</div>
+
+{% endblock %}

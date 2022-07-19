@@ -1,0 +1,163 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+        <h2 style="margin-right:250px; color:#7AECB5 ;" class="text-center mb-1"><i> Information personnel </b></i></h2>
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card-body rounded">
+                <table class="table border border-4">
+                    <thead rounded>
+                    <tr class="list-group-item-secondary">
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Cin</th>
+                        <th>Date de naissance</th>
+                        <th>Numéro de téléphone</th>
+                        <th>Sexe</th>
+                        <th>Adresse</th>
+                        <th>Profession</th>
+                        <th>Email</th>
+                        <th>Mot de passe</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>{{patient.nom}}</td>
+                          <td>{{patient.prenom}}</td>
+                          <td>{{patient.cin}}</td>
+                          <td>{{patient.dateNaissance}}</td>
+                          <td>{{patient.numeroTelephone}}</td>
+                          <td>{{patient.sexe}}</td>
+                          <td>{{patient.adresse}}</td>
+                          <td>{{patient.profession}}</td>
+                          <td>{{patient.email}}</td>
+                          <td>{{patient.motDePasse}}</td>
+                          <!-- <td>
+                            <a href="{% url 'patient-update' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                            <a href="{% url 'patient-delete' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                          </td> -->
+                        </tr>
+                      </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <h2 style="margin-right:250px; color:#7AECB5 ;" class="text-center mb-1"><i> Dossier médical </b></i></h2>
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card-body rounded">
+                <table class="table border border-4">
+                    <thead rounded>
+                    <tr class="list-group-item-secondary">
+                        <th>Date de création</th>
+                        <th>Groupe sanguin</th>
+                        <th>Taille</th>
+                        <th>Poids</th>
+                        <th>Assurance maladie</th>
+                        <th>Allergies</th>
+                        <th>Vaccination</th>
+                        <th>Patient</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{dossier.dateCreation}}</td>
+                            <td>{{dossier.groupeSanguin}}</td>
+                            <td>{{dossier.taille}}</td>
+                            <td>{{dossier.poids}}</td>
+                            <td>{{dossier.assuranceMaladie}}</td>
+                            <td>{{dossier.allergies}}</td>
+                            <td>{{dossier.vaccination}}</td>
+                            <td>{{dossier.patient.nom}}</td>
+                          <!-- <td>
+                            <a href="{% url 'dossier-update' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                            <a href="{% url 'dossier-delete' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                          </td> -->
+                        </tr>
+                      </tbody>
+                    </table>
+            <!-- </div>
+            <br>
+        <a style="color:#7AECB5;" class="btn " href="{% url 'accueil-index' %}">Rendez-vous</a> -->
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <h2 style="margin-right:250px; color:#7AECB5 ;" class="text-center mb-1"><i> Rendez-vous </b></i></h2>
+    </div>
+</div>
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4" >
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+              <th>Date</th>
+              <th>Maladie</th>
+              <th>Consultation</th>
+              <th>Ordonnance</th>
+              <th>Prix</th>
+              <th>Prix total</th>
+              <th>Mode de paiement</th>
+              <th>Patient</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for rendez in rendezs %}
+              <tr>
+                <td>{{rendez.date}}</td>
+                <td>{{rendez.maladie}}</td>
+                <td>{{rendez.consultation}}</td>
+                <td>{{rendez.ordonnance}}</td>
+                <td>{{rendez.prix}}</td>
+                <td>{{rendez.prixTotal}}</td>
+                <td>{{rendez.modePaiement}}</td>
+                <td>{{rendez.patient.nom}}</td>
+                <!-- <td>
+                  <a href="{% url 'rendez-detail' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                  <a href="{% url 'rendez-update' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                  <a href="{% url 'rendez-delete' rendez.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                </td> -->
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        <!-- </div>
+        <br>
+        <a style="color:#7AECB5;" class="btn float-end" href="{% url 'rendez-create'%}">Créer un nouveau rendez-vous</a> -->
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,224 @@
+{% load static %}
+
+<html>
+    <head> 
+        <title> Cabinet Medical </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/203ad00927.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static '/style.css' %}" />
+    </head>
+
+    <body>
+        
+        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light"> 
+            <div class="container-fluid">
+                <a class="navbar-brand"> <i class="fa-solid fa-house-medical " style="color:#7AECB5 ;"></i> CabinetMedical</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+                        {% if current_nom  %}
+
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueil-index' %}">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact-index' %}">Contact</a>
+                            </li>
+                        {% endif %} 
+                        
+
+                        {% if current_nom != ""  %}
+                            {% if current_role == ""  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueil-index' %}">Accueil</a>
+                            </li>
+                                {% if current_id %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'patient-detail' current_id %}">Informations personnelles</a>
+                                </li>
+                                {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'disponibilite-index' %}">Disponibilité</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact-index' %}">Contact</a>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+                        {% if current_role == 'Infirmière'  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueill-index' %}">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'patient-index' %}">Liste patients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'rendez-index' %}">Rendez-vous</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dossier-index' %}">Dossier médicaux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'disponibilite-index' %}">Disponibilité</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'statistique' %}">Statistiques</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact-index' %}">Contact</a>
+                            </li>
+                        {% endif %}
+                        {% if current_role == 'Secretaire'  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueill-index' %}">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'patient-index' %}">Liste patients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'rendez-index' %}">Rendez-vous</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dossier-index' %}">Dossier médicaux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'disponibilite-index' %}">Disponibilité</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'statistique' %}">Statistiques</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'facture' %}">Factures</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact-index' %}">Contact</a>
+                            </li>
+                        {% endif %}
+                        {% if current_role == 'Médecin'  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueill-index' %}">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'patient-index' %}">Liste patients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'utilisateur-index' %}">Profil du personnel</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'rendez-index' %}">Rendez-vous</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dossier-index' %}">Dossier médicaux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'disponibilite-index' %}">Disponibilité</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'statistique' %}">Statistiques</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'facture' %}">Factures</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact-index' %}">Contact</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                    {% if current_nom %}
+                        <div class="d-flex">
+                            <a class="nav-link" >{{current_prenom}} {{current_nom}}</a> &nbsp; &nbsp; &nbsp;
+                            <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+                        </div>
+
+                    {% else %}
+                    
+                        <a class="nav-link" href="{% url 'login' %}">Connexion</a> &nbsp; &nbsp; &nbsp;
+                        <a class="nav-link" href="{% url 'patient-create' %}">Inscription</a>
+                        <!-- <a class="nav-link" href="{% url 'registerr' %}">Inscription1</a> -->
+
+                    {% endif %}
+
+                        
+                        <!-- {% if current_nom  %}
+
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueil-index' %}">Accueil</a>
+                            </li>
+                        {% endif %}
+                        {% if current_role %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accueill-index' %}">Accueil2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'patient-index' %}">Liste patients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'rendez-index' %}">Rendez-vous</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dossier-index' %}">Dossier médicaux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'statistique' %}">Statistiques</a>
+                            </li>
+                        {% endif %}
+                        {% if current_nom  %}
+                            {% if current_role %}
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'patient-detail' 9%}">Informations personnelles</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                        {% if current_nom %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'disponibilite-index' %}">Disponibilité</a>
+                            </li>
+                        {% endif %}
+                        {% if current_role == 'Secretaire'  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'facture' %}">Factures</a>
+                            </li>
+                        {% endif %}
+                        {% if current_role == 'Médecin'  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'utilisateur-index' %}">Liste utilisateurs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'facture' %}">Factures</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact-index' %}">Contact</a>
+                        </li>
+                    </ul>
+                    {% if current_nom %}
+                        <div class="d-flex">
+                            <a class="nav-link" >{{current_prenom}} {{current_nom}}</a> &nbsp;
+                            <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+                        </div>
+
+                    {% else %}
+                    
+                        <a class="nav-link" href="{% url 'login' %}">Connexion</a> &nbsp; &nbsp; &nbsp;
+                        <a class="nav-link" href="{% url 'register' %}">Inscription</a>
+
+                    {% endif %} -->
+                        
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+
+    </body>
+
+</html>

@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+  <div class="text-center mb-1">
+    <img style="width: 250px ;" src="{% static 'image/index.png' %}" class="img-fluid rounded-start" alt="...">
+    <br><br>
+  <h1 class="text-center mb-1"><i>Liste des utilisateurs</i></h1>
+  </div>
+</div>
+</div>
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded" >
+        <table class="table border border-4" >
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Cin</th>
+              <th>Date de naissance</th>
+              <th>Numéro de téléphone</th>
+              <th>Sexe</th>
+              <th>Adresse</th>
+              <th>Salaire</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for utilisateur in utilisateurs %}
+              <tr>
+                <td>{{utilisateur.nom}}</td>
+                <td>{{utilisateur.prenom}}</td>
+                <td>{{utilisateur.cin}}</td>
+                <td>{{utilisateur.dateNaissance}}</td>
+                <td>{{utilisateur.numeroTelephone}}</td>
+                <td>{{utilisateur.sexe}}</td>
+                <td>{{utilisateur.adresse}}</td>
+                <td>{{utilisateur.salaire}}</td>
+                <td>{{utilisateur.email}}</td>
+                <td>{{utilisateur.role}}</td>
+                <td>
+                  <a href="{% url 'utilisateur-detail' utilisateur.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                  <a href="{% url 'utilisateur-update' utilisateur.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                  <a href="{% url 'utilisateur-delete' utilisateur.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <a style="color:#7AECB5;" class="btn float-end" href="{% url 'utilisateur-create'%}">Créer un nouvel utilisateur</a>
+      </div>
+  </div>
+</div>
+
+
+
+  <!-- <ul>
+    {% for utilisateur in utilisateurs %}
+      <li>
+          <p>{{utilisateur.nom}}
+          <a href="{% url 'utilisateur-detail' utilisateur.id %}">détail</a>
+          - <a href="{% url 'utilisateur-update' utilisateur.id %}">modifier</a> 
+          - <a href="{% url 'utilisateur-delete' utilisateur.id %}">supprimer</a>
+          </p>
+      </li>
+    {% endfor %}
+    <a href="{% url 'utilisateur-create'%}">Créer un nouvel utilisateur</a>
+  </ul> -->
+
+{% endblock %}

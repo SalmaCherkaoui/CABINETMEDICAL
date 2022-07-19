@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br>
+          <img style="width: 250px; margin-left:300px;" src="{% static 'image/detail.png' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col" style="margin-top:100px;" >
+        <h2 style="margin-right:210px;" class="text-center mb-1"><i>Information sur le dossier médical</b></i></h2>
+        </div>
+    </div>
+</div>
+
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card-body rounded">
+                <table class="table border border-4">
+                    <thead rounded>
+                    <tr class="list-group-item-secondary">
+                        <th>Date de création</th>
+                        <th>Groupe sanguin</th>
+                        <th>Taille</th>
+                        <th>Poids</th>
+                        <th>Assurance maladie</th>
+                        <th>Allergies</th>
+                        <th>Vaccination</th>
+                        <th>Patient</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{dossier.dateCreation}}</td>
+                            <td>{{dossier.groupeSanguin}}</td>
+                            <td>{{dossier.taille}}</td>
+                            <td>{{dossier.poids}}</td>
+                            <td>{{dossier.assuranceMaladie}}</td>
+                            <td>{{dossier.allergies}}</td>
+                            <td>{{dossier.vaccination}}</td>
+                            <td>{{dossier.patient.nom}}</td>
+                          <td>
+                            <a href="{% url 'dossier-update' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                            <a href="{% url 'dossier-delete' dossier.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+            </div>
+            <br>
+        <a style="color:#7AECB5;" class="btn " href="{% url 'dossier-index' %}">Retourner à la liste des dossiers médicaux</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

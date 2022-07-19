@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br>
+          <img style="width: 250px; margin-left:300px;" src="{% static 'image/detail.png' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col" style="margin-top:100px;" >
+        <h2 style="margin-right:250px;" class="text-center mb-1"><i>Information sur le patient <b>~ {{ patient.nom }} ~</b></i></h2>
+        </div>
+    </div>
+</div>
+
+
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card-body rounded">
+                <table class="table border border-4">
+                    <thead rounded>
+                    <tr class="list-group-item-secondary">
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Cin</th>
+                        <th>Date de naissance</th>
+                        <th>Numéro de téléphone</th>
+                        <th>Sexe</th>
+                        <th>Adresse</th>
+                        <th>Profession</th>
+                        <th>Email</th>
+                        <th>Mot de passe</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>{{patient.nom}}</td>
+                          <td>{{patient.prenom}}</td>
+                          <td>{{patient.cin}}</td>
+                          <td>{{patient.dateNaissance}}</td>
+                          <td>{{patient.numeroTelephone}}</td>
+                          <td>{{patient.sexe}}</td>
+                          <td>{{patient.adresse}}</td>
+                          <td>{{patient.profession}}</td>
+                          <td>{{patient.email}}</td>
+                          <td>{{patient.motDePasse}}</td>
+                          <td>
+                            <a href="{% url 'patient-update' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                            <a href="{% url 'patient-delete' patient.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+            </div>
+            <br>
+        <a style="color:#7AECB5;" class="btn " href="{% url 'patient-index' %}">Retourner à la liste des patients</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

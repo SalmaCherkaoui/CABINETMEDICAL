@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+{{ current_nom }}
+{{ current_prenom }}
+{{ current_role }}
+
+<br><br><br>
+<div class="container">
+  <div class="row">
+      <div class="text-center" style="margin-left:290px;">
+        <div class="card text-center mb-1" style="width: 45rem; border: 4px solid #7AECB5;">
+          <br>
+          <img style=" width: 250px; margin-left:230px;" src="{% static 'image/loginn.png' %}" class="img-fluid rounded-start" alt="...">
+          <br>
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+            <div class = "form-group row" style="margin-left:70px;">
+              <label class = "col-sm-4 col-form-label"> Email :</label>
+              <div class = "col-sm-5">
+                <input type = "email" name = "email" class = "form-control" required minlength = "3" maxlength="45" />
+              </div>
+            </div>
+            <br>
+            <div class = "form-group row" style="margin-left:70px;">
+              <label class = "col-sm-4 col-form-label"> Mot de passe :</label>
+              <div class = "col-sm-5">
+                <input type = "password" name = "motDePasse" class = "form-control" required minlength = "3" maxlength="45" />
+              </div>
+            </div>
+
+            <br><br>
+                  <input class="btn" style="background-color:  #7AECB5;" type="submit" value="Se Connecter">
+                <br><br>
+                  <a style="color:back; " class="btn" href="{% url 'utilisateur-create'%}">Email ou mot de passe oublié ?</a>
+                  <br>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}

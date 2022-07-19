@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+  <div class="text-center mb-1">
+    <img style="width: 250px ;" src="{% static 'image/index.png' %}" class="img-fluid rounded-start" alt="...">
+    <br><br>
+  <h1 class="text-center mb-1"><i>Liste des disponibilites</i></h1>
+  </div>
+</div>
+</div>
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-body rounded">
+        <table class="table border border-4">
+          <thead rounded>
+          <tr class="list-group-item-secondary">
+              <th>Date</th>
+              <th>disponibilite</th>
+              <th>Utilisateur</th>
+              {% if current_nom != ""  %}
+                {% if current_role != ""  %}
+                  <th>Action</th>
+                {% endif %}
+              {% endif %}
+          </tr>
+          </thead>
+          <tbody>
+            {% for disponibilite in disponibilites %}
+              <tr>
+                <td>{{disponibilite.date}}</td>
+                <td>{{disponibilite.disponibilite}}</td>
+                <td>{{disponibilite.utilisateur.nom}}</td>
+                {% if current_nom != ""  %}
+                  {% if current_role != ""  %}
+                      <td>
+                            <a href="{% url 'disponibilite-detail' disponibilite.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp; 
+                            <a href="{% url 'disponibilite-update' disponibilite.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-pencil"></i></a> &nbsp;&nbsp; 
+                            <a href="{% url 'disponibilite-delete' disponibilite.id %}"><i style="color:#7AECB5 ;" class="fa-solid fa-trash-can"></i></a>
+                      </td>
+                  {% endif %}
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <br>
+        {% if current_nom != ""  %}
+          {% if current_role != ""  %}
+            <a style="color:#7AECB5;" class="btn float-end" href="{% url 'disponibilite-create'%}">Créer une nouvelle disponibilite</a>
+          {% endif %}
+        {% endif %}
+      </div>
+  </div>
+</div>
+
+
+  <!-- <ul>
+    {% for disponibilite in disponibilites %}
+      <li>
+          <p>{{disponibilite.utilisateur.nom}}
+          <a href="{% url 'disponibilite-detail' disponibilite.id %}">détail</a>
+          - <a href="{% url 'disponibilite-update' disponibilite.id %}">modifier</a> 
+          - <a href="{% url 'disponibilite-delete' disponibilite.id %}">supprimer</a>
+          </p>
+      </li>
+    {% endfor %}
+    <a href="{% url 'disponibilite-create'%}">Créer une nouvelle disponibilite</a>
+  </ul> -->
+
+{% endblock %}
